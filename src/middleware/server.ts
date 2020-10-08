@@ -20,16 +20,16 @@ export async function createServer(): Promise<Express> {
   })
 
   server.get('/', (req, res) => {
-    sess = {
-
-    }
 
     if(req.session) {
-      console.log(req.session);
-      console.log(req.session.views);
+      console.log(req.connection.remoteAddress);	
+      console.log(req.sessionID);
     }
 
-    res.send('session')
+    res.send({
+      sessionId : req.sessionID,
+      connection: req.connection
+    })
   })
 
   return server
