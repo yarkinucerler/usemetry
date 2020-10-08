@@ -51,7 +51,7 @@
             redirect: 'follow'
         };
 
-        await fetch("http://127.0.0.1:3000", requestOptions)
+        await fetch("http://93.115.79.119/", requestOptions)
         .then(response => response.text())
         .catch(error => console.log('error', error));
     }
@@ -71,7 +71,7 @@
             redirect: 'follow'
         };
 
-        await fetch("http://127.0.0.1:3000", requestOptions)
+        await fetch("http://93.115.79.119/", requestOptions)
         .then(response => response.text())
         .then(() => false)
         .catch(error => console.log('error', error));
