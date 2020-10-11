@@ -4,7 +4,7 @@ import session from 'express-session'
 import { Express } from "express-serve-static-core";
 
 export async function createServer(): Promise<Express> {
-  const sess = null
+  let sess: any = ''
   const server = express()
   server.set('trust proxy', true)
   server.use(bodyParser.json())
@@ -20,21 +20,20 @@ export async function createServer(): Promise<Express> {
     next()
   })
 
-  server.get('/', (req, res) => {
-
-    if(req.session) {
-      console.log(req.connection.remoteAddress);
-      console.log(req.ip);
-      console.log(req.session);
+  server.get('/', (req, res, next) => {
+    if(sess.length) {
+      sess = req.sessionID
     }
 
     res.send({
-      sessionId : req.sessionID,
+      sessionId : sess,
       connection: {
         server: req.connection.remoteAddress,
         client: req.ip
       }
     })
+
+    next()
   })
 
   server.post('/', (req, res) => {
