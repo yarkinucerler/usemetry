@@ -24,11 +24,11 @@ export async function createServer(): Promise<Express> {
 
     if(req.session) {
       console.log(req.connection.remoteAddress);
-      console.log(req.sessionID);
+      console.log(req.session);
     }
 
     res.send({
-      sessionId : req.sessionID,
+      sessionId : req.session,
       connection: req.connection.remoteAddress
     })
   })
