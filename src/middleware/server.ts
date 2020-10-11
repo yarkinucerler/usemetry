@@ -7,6 +7,7 @@ export async function createServer(): Promise<Express> {
   const sess = null
   const server = express()
 
+  server.use(bodyParser.json())
   server.use(session({
     secret: 'usemetry-demo',
     resave: false,
