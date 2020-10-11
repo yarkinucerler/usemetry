@@ -49,7 +49,7 @@ export async function createServer(): Promise<Express> {
 
     res.send({
       sessionId : req.sessionID,
-      connection: req.connection.remoteAddress
+      connection: req.ip
     })
   })
 
