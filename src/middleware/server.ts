@@ -22,7 +22,23 @@ export async function createServer(): Promise<Express> {
   server.get('/', (req, res) => {
 
     if(req.session) {
-      console.log(req.connection.remoteAddress);	
+      console.log(req.connection.remoteAddress);
+      console.log(req.sessionID);
+    }
+
+    res.send({
+      sessionId : req.sessionID,
+      connection: req.connection.remoteAddress
+    })
+  })
+
+  server.post('/', (req, res) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    res.header("Access-Control-Allow-Methods', 'GET,POST");
+
+    if(req.session) {
+      console.log(req.connection.remoteAddress);
       console.log(req.sessionID);
     }
 

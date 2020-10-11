@@ -4,7 +4,7 @@ const Port = 3000
 
 createServer()
   .then((server: any) => {
-    server.listen(process.env.PORT || Port, () => {
+    server.listen(process.env.PORT || Port, '127.0.0.1', () => {
       console.info(`Listening on http://localhost:${Port}`)
     })
   })
