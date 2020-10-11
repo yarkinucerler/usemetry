@@ -10,6 +10,7 @@ export async function createServer(): Promise<Express> {
   server.use(bodyParser.json())
   server.use(session({
     secret: 'usemetry-demo',
+    name: '__um',
     resave: false,
     saveUninitialized: true,
     cookie: { secure: true }
@@ -21,7 +22,7 @@ export async function createServer(): Promise<Express> {
   })
 
   server.get('/', (req, res, next) => {
-    if(sess.length) {
+    if(!sess.length) {
       sess = req.sessionID
     }
 
