@@ -4,20 +4,40 @@
 <head>
     <meta charset="UTF-8">
     <title>UserMetry | Hello World</title>
+
+    <!--<script type="text/javascript">
+        (function (u,s,e,m,t,r,y) {
+            m[u] = m[u]||function(){(m[u].y=m[u].y||[]).push(arguments)};
+            m[u].l=1*new Date();
+            r=t.createElement(e),y=t.getElementsByTagName(e)[0],r.async=1,r.src=s,y.parentNode.insertBefore(r,y)
+        })
+        ("um", "./__um.js", "script", window, document)
+    </script>-->
     <script>
-        !function (e, f, u, i)
-        {
-            if (!document.getElementById(i))
-            {
-                e.async = 1;
-                e.src = u;
-                i ? e.id = i : '';
-                f.parentNode.insertBefore(e, f);
-            }
-        }
-        (document.createElement('script'),
-        document.getElementsByTagName('script')[0],
-        './__um.js');
+        (function (d, w, c) {
+            (w[c] = w[c] || []).push(function () {
+                try {
+                    w.umCounter = new Um.Metry({
+                        id: 48284273,
+                        clickmap: true,
+                        trackLinks: true,
+                        accurateTrackBounce: true
+                    })
+                } catch (e) { }
+            });
+
+            var n = d.getElementsByTagName("script")[0],
+                s = d.createElement("script"),
+                f = function () { n.parentNode.insertBefore(s, n); };
+            s.type = "text/javascript";
+            s.async = true;
+            s.src = "./__um.js";
+
+            if (w.opera == "[object Opera]") {
+                d.addEventListener("DOMContentLoaded", f, false);
+            } else { f(); }
+        })(document, window, "use_metry_callbacks");
+
     </script>
 </head>
 <body>
