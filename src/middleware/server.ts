@@ -1,20 +1,12 @@
 import express from 'express'
 import bodyParser from 'body-parser'
-import session from 'express-session'
-import { Express } from "express-serve-static-core";
+import { Express } from "express-serve-static-core"
+import * as crypto from "crypto";
 
 export async function createServer(): Promise<Express> {
-  let sess: any = ''
   const server = express()
   server.set('trust proxy', true)
   server.use(bodyParser.json())
-  server.use(session({
-    secret: 'usemetry-demo',
-    name: '__um',
-    resave: false,
-    saveUninitialized: true,
-    cookie: { secure: true }
-  }))
 
   server.use((req, res, next) => {
     console.log('Time:', Date.now())
@@ -22,16 +14,11 @@ export async function createServer(): Promise<Express> {
   })
 
   server.get('/', (req, res, next) => {
-    if(!sess.length) {
-      sess = req.sessionID
-    }
-
+    const uuid = req.cookies || crypto.randomBytes(16).toString("hex")
+    res.cookie('__um_uuid', uuid)
     res.send({
-      sessionId : sess,
-      connection: {
-        server: req.connection.remoteAddress,
-        client: req.ip
-      }
+      userAgent: req.header('user-agent'),
+      uuid: uuid
     })
 
     next()
@@ -50,6 +37,17 @@ export async function createServer(): Promise<Express> {
     res.send({
       sessionId : req.sessionID,
       connection: req.ip
+    })
+  })
+
+  server.post('/check', (req, res) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Methods', 'GET,POST,PUT");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    console.log(req.headers.cookies);
+    res.send({
+      userAgent: req.header('user-agent'),
+      uuid: req.cookies
     })
   })
 

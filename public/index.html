@@ -3,17 +3,18 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>UserMetry | Hello World</title>
+    <title>UserMetry | Hello World</title>
 
-    <!--<script type="text/javascript">
+    <script type="text/javascript">
         (function (u,s,e,m,t,r,y) {
             m[u] = m[u]||function(){(m[u].y=m[u].y||[]).push(arguments)};
-            m[u].l=1*new Date();
+            m[u].o=1*new Date();
+            m[u].l= t.referrer;
             r=t.createElement(e),y=t.getElementsByTagName(e)[0],r.async=1,r.src=s,y.parentNode.insertBefore(r,y)
         })
         ("um", "./__um.js", "script", window, document)
-    </script>-->
-    <script>
+    </script>
+    <!--<script>
         (function (d, w, c) {
             (w[c] = w[c] || []).push(function () {
                 try {
@@ -23,7 +24,9 @@
                         trackLinks: true,
                         accurateTrackBounce: true
                     })
-                } catch (e) { }
+                } catch (e) {
+                    console.log(e);
+                }
             });
 
             var n = d.getElementsByTagName("script")[0],
@@ -33,7 +36,7 @@
             s.async = true;
             s.src = "./__um.js";
 
-            if (w.opera == "[object Opera]") {
+            if (w.opera === "[object Opera]") {
                 d.addEventListener("DOMContentLoaded", f, false);
             } else { f(); }
         })(document, window, "use_metry_callbacks");
