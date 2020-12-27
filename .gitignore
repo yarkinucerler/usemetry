@@ -1,6 +1,7 @@
 # Mac files
 .DS_Store
 .idea
+travis/id_rsa.pub
 
 # Logs
 logs
