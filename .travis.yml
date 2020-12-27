@@ -7,3 +7,4 @@ script:
   - npm install
   - echo 'Running tests'
   - npm run test:unit
+  -
